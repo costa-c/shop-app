@@ -49,9 +49,11 @@
                                 </li>
                             @endif
                         @else
+                            <li><a class="nav-link" href="{{ route('products.index') }}">Produtos</a></li>
+                            @can('role-list')
                             <li><a class="nav-link" href="{{ route('users.index') }}">Utilizadores</a></li>
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Papeis</a></li>
-                            <li><a class="nav-link" href="{{ route('products.index') }}">Produtos</a></li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

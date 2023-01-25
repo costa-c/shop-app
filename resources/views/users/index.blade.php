@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-lg-12">
+        <div class="col-md-12">
             @if($message = Session::get('success'))
 
             <div class="alert alert-success">
@@ -15,11 +15,13 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col col-lg-12"><b>{{ __('Dados de Utilizadores') }}</b></div>
-                        <div class="col col-lg-12">
+                        <div class="col col-md-12"><b>{{ __('Dados de Utilizadores') }}</b></div>
+                        @can('role-create')
+                        <div class="col col-md-12">
                             <a href="{{ route('users.create') }}" class="btn btn-success btn-sm float-end">
                                 Adicionar</a>
                         </div>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">
@@ -48,6 +50,7 @@
                                         <a class="btn btn-primary btn-sm"
                                             href="{{ route('users.show',$user->id) }}">
                                             Ver</a>
+                                        @can('role-create')
                                         <a class="btn btn-warning btn-sm"
                                             href="{{ route('users.edit',$user->id) }}">
                                             Editar</a>
@@ -56,6 +59,7 @@
                                              {!! Form::submit('Eliminar',
                                                 ['class' => 'btn btn-danger btn-sm']) !!}
                                         {!! Form::close() !!}
+                                        @endcan
                                      </td>
                                 </tr>
                             @endforeach
